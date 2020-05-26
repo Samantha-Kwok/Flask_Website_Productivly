@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ image_file }}">
+            <div  class="media-body">
+                <h2 class="account-heading">{{ current_user.username }}</h2>
+                <p class="text-secondary">{{ current_user.email }}</p>
+            </div>  
+        </div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="borde-bottom mb-4">Update Post</legend>
+            </fieldset>
+            <div class="form-group">
+                {{form.title.label(class="form-control-label")}}
+                {% if form.title.errors %}
+                    {{form.title(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.title(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.content.label(class="form-control-label")}}
+                {% if form.content.errors %}
+                    {{form.content(class="form-control form-control-lg is-invalid")}} 
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ errors  }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {{form.content(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+            <fieldset>
+            <div class="form-group">
+                {{form.submit(class="btn btn-outline-info")}}
+                <a href="{{url_for('posts.blog')}}" role="Button" aria-diabled="True" class="btn btn-outline-info">Go Back</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

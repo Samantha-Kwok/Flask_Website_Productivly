@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+   <div class="content-section">
+       <form method ="POST" action="">
+    <!--you need it for security the protection-->
+        {{form.hidden_tag()}} 
+        <fieldset class="form-group">
+        <legend class="border-bottom mb-4">New Task</legend>
+        </fieldset>
+        <div class="form-group">
+            {{ form.item.label(class="form-control-label")}}
+            {% if form.item.errors %}
+                {{ form.item(class="form-control form-control-lg is-invalid")}}
+                <div  class="invalid-feedback">
+                {% for error  in form.item.errors %}
+                    <span>{{ error }}</span>
+                {% endfor%}
+                </div>
+            {% else %}
+                {{ form.item(class="form-control form-control-lg ")}}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.category.label(class="form-control-label")}}
+            {% if form.category.errors %}
+                {{ form.category(class="form-control form-control-lg is-invalid")}}  
+                <div class="invalid-feedback">
+                {% for error in form.category.errors %}
+                    <span>{{ error }}</span>  
+                {% endfor %}
+                </div>
+            {% else %}
+                {{ form.category(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.start_date.label(class="form-control-label")}}
+            {% if form.start_date.errors %}
+                {{ form.start_date(class="form-control form-control-lg is-invalid")}}  
+                <div class="invalid-feedback">
+                {% for error in form.start_date.errors %}
+                    <span>{{ error }}</span>  
+                {% endfor %}
+                </div>
+            {% else %}
+                {{ form.start_date(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.end_date.label(class="form-control-label")}}
+            {% if form.end_date.errors %}
+                {{ form.end_date(class="form-control form-control-lg is-invalid")}}  
+                <div class="invalid-feedback">
+                {% for error in form.end_date.errors %}
+                    <span>{{ error }}</span>  
+                {% endfor %}
+                </div>
+            {% else %}
+                {{ form.end_date(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+        <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info")}} 
+        <a href="{{url_for('tasks.todo')}}" role="Button" aria-diabled="True" class="btn btn-outline-info">Go Back</a>
+        </div>
+        </form>
+    </div>
+{% endblock %}

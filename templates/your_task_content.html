@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+        <div>
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + task.owner.image_file) }}">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="#">{{ task.owner.username }}</a>
+                        <small class="text-muted">{{ task.date_created.strftime('%Y-%m-%d') }}</small>  
+                    </div>
+                    <h2 class="article-title">{{ task.item }}</h2>
+                    <p class="article-content">Cateogory: {{ task.category }}</p>
+                    <p class="article-content">Start Date: {{ task.start_date }}</p>
+                    <p class="article-content">End Date:{{ task.end_date }}</p>
+                </div>
+                </article>
+        </div>
+        <div>
+            <a href="{{url_for('tasks.update_task', task_id=task.id)}}" class="btn btn-outline-info" role="button" aria-pressed="true">Update task</a>
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#deleteModal">Delete</button>
+            <a href="{{url_for('tasks.todo')}}" role="Button" aria-diabled="True" class="btn btn-outline-info">Go Back</a>
+        </div>
+         <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Delete task?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="{{url_for('tasks.delete_task', task_id= task.id)}}" role="Button" aria-diabled="True" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %} 
