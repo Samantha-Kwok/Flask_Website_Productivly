@@ -11,7 +11,7 @@
 
 1.Register/Login
 
-<img src="screenshoots/Register_Login.gif">
+<img src="screenshoots/register_login.gif">
 
 2. Update Account Details
 
