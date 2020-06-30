@@ -39,6 +39,7 @@
 
 1. Register/Login
 
+<img src="screenshoots/Register_Login.gif">
 
 2. Update Account Details
 
