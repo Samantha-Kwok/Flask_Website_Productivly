@@ -43,10 +43,9 @@ class Task(db.Model):
     category= db.Column(db.String(20), nullable=False)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False,)
-    # can I automate the caluation of the end date as it will be due in 24 hour by default.
     complete= db.Column(db.Boolean, nullable=False, unique=False, default=False)
     date_created=db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    actual_completion_date=db.Column(db.Date, nullable=False)
+    actual_completion_date=db.Column(db.Date)
     user_id=db.Column(db.Integer,db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
@@ -55,11 +54,15 @@ class Task(db.Model):
 class Post(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(100), nullable=False)
+    subtitle=db.Column(db.String(500), nullable=False)
     date_posted=db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content=db.Column(db.Text, nullable=False)
+    post_image= db.Column(db.String(20), nullable=False, default="newdefaultimage.jpg")
     user_id=db.Column(db.Integer,db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Post('{self.title}', '{self.date_posted}', '{self.post_image}')"
+
+    
 
     
