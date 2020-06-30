@@ -1,38 +1,43 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ image_file }}">
-            <div  class="media-body">
-                <h2 class="account-heading">{{ current_user.username }}</h2>
-                <p class="text-secondary">{{ current_user.email }}</p>
-            </div>  
-        </div>
-            <legend class="border-bottom mb-4">Your Blog</legend>
-            <a href="{{url_for('posts.new_post')}}" class="btn btn-primary btn-md active border border-white" role="button" aria-pressed="true" style="background-color: #2a937a">Create A New Post</a>
+        <div>
+            <legend class="border-bottom mb-4 text-bold">Your Blog</legend>
+            <a href="{{url_for('posts.new_post')}}" class="btn btn-primary btn-md active border border-white" role="button" aria-pressed="true" style="background-color:#66acff">Create A New Post</a>
             </br>
         </br>
         <div>
             {% for your_post in your_posts.items %}
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <small class="text-muted">{{ your_post.date_posted.strftime('%Y-%m-%d') }}</small>  
+            <div class="card mb-4" style="max-width: 750px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{{url_for('static',filename='post_pics/'+ your_post.post_image)}}" class="card-img" alt="post post_image">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5><a class="card-title" href="{{url_for('posts.your_post_content', post_id = your_post.id)}}">{{your_post.title}}</a></h5>
+                      <p class="card-text">{{your_post.subtitle}}</p>
                     </div>
-                    <h2><a href="{{url_for('posts.your_post_content', post_id=your_post.id)}}" class="article-title">{{ your_post.title }}</a></h2>
-            </article>
+                  </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
         {% for page_num in your_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
             {%if page_num %}
                 {%if your_posts.page== page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('posts.blog' , page=page_num)}}">{{page_num}}</a>
+                <a class="btn btn-primary mb-4" href="{{ url_for('posts.blog' , page=page_num)}}">{{page_num}}</a>
                 {% else %}
-                <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.blog' , page=page_num)}}">{{page_num}}</a>
+                <a class="btn btn-outline-primary mb-4" href="{{ url_for('posts.blog' , page=page_num)}}">{{page_num}}</a>
                 {% endif %}
             {% else %}
                 . . .
             {% endif %}
         {% endfor %} 
+        </div>
     </div>
-{% endblock %}
+    {% endblock %}
+    {% block sidebarcontent %}
+    <dvi class="card mb-4">
+     {% endblock %}    
+    </dvi>
