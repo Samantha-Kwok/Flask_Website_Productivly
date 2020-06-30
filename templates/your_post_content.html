@@ -1,23 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-        <div>
-            <article class="media content-section">
-                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <a class="mr-2" href="#">{{ post.author.username }}</a>
-                        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>  
-                    </div>
-                    <h2 class="article-title">{{ post.title }}</h2>
-                    <p class="article-content">{{ post.content }}</p>
-                </div>
-                </article>
-        </div>
-        <div>
-            <a href="{{url_for('posts.update_post', post_id=post.id)}}" class="btn btn-outline-info" role="button" aria-pressed="true">Update Post</a>
-            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#deleteModal">Delete</button>
-            <a href="{{url_for('posts.blog')}}" role="Button" aria-diabled="True" class="btn btn-outline-info">Go Back</a>
-        </div>
+    <div class="card-mb-4">
+        <h2 class="mt-4">{{post.title}}</h2>
+        <p class="lead">
+            by
+            <a href="#">{{post.author.username}}</a>
+        </p>
+        <hr>
+        <p>
+            Posted on {{post.date_posted.strftime("%Y-%m-%d") }} 
+        </p>
+        <hr>
+          <div class="card-mb-4">
+            <img class="card-img" height="auto" max-width="100%" src="{{url_for('static',filename='post_pics/'+ post.post_image)}}" alt="post image">
+          </div>
+        <hr>
+        <p clss="lead">
+            {{post.subtitle}}
+        </p>
+        <p>
+            {{post.content}}
+        </p>
+        <hr>
+    </div>
+    <div>
+        <a href="{{url_for('posts.update_post', post_id=post.id)}}" class="btn btn-outline-primary" role="button" aria-pressed="true">Update Post</a>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <a href="{{url_for('posts.blog')}}" role="Button" aria-diabled="True" class="btn btn-outline-primary">Go Back</a>
+    </div>
          <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
