@@ -1,67 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ image_file }}">
-            <div  class="media-body">
-                <h2 class="account-heading">{{ current_user.username }}</h2>
-                <p class="text-secondary">{{ current_user.email }}</p>
-            </div>  
+        <div>
+            <legend class="border-bottom mb-4">To-Do List</legend>
+            <a href="{{url_for('tasks.new_task')}}" class="btn btn-primary btn-md active border border-white" role="button" aria-pressed="true" style="background-color:#66acff">Create A New Task</a>
         </div>
-            <legend class="border-bottom mb-4">To Do List</legend>
-            <a href="{{url_for('tasks.new_task')}}" class="btn btn-primary btn-md active border border-white" role="button" aria-pressed="true" style="background-color: #2a937a">Create A New Task</a>
-            </br>
-            </br>
+        <br>
             <!----display all the task-->
-            <div class="container">
-                <div class="row">
-                    <h3 class=col-md-8>Tasks to do:</h3> 
-                    <br>
-                </div>
-                <div class="row">
-                    {% for incomplete_task in incomplete_tasks.items %}
-                    <div class="col-md-9 ">
-                        <ul class="list-group">
-                            <a href="{{url_for('tasks.your_task_content',task_id=incomplete_task.id)}}" class="list-group-item  list-group-item-action list-group-item-light"> {{ incomplete_task.item}}   due by {{ incomplete_task.end_date}}</a>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="list-group">
-                            <a href="{{url_for('tasks.complete',task_id=incomplete_task.id)}}" class="list-group-item list-group-item-action active border border-white" style="background-color: #2a937a">
-                                Compete
-                            </a>
-                        </div>        
-                    </div>
-                    {% endfor %}
-                </div>
-                <br>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <h3 class=col-md-8>Tasks I have accomplished: </h3> 
-                    <br> 
-                </div>
-                <div class="row">
-                    {% for completed_task in completed_tasks.items %}
-                    <div class="col-md-12 ">
-                        <ul class="list-group">
-                            <a href="#" class="list-group-item  list-group-item-action list-group-item-light"> {{ completed_task.item}}  done by {{ completed_task.actual_completion_date}}</a>
-                        </ul>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>  
-        {% for page_num in incomplete_tasks.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-            {%if page_num %}
-                {%if incomplete_tasks.page== page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('tasks.todo', page=page_num)}}">{{page_num}}</a>
-                {% else %}
-                <a class="btn btn-outline-info mb-4" href="{{ url_for('tasks.todo', page=page_num)}}">{{page_num}}</a>
-                {% endif %}
-            {% else %}
-                . . .
-            {% endif %}
-        {% endfor %} 
+        <table class="table table-borderless mb-4 table-sm" style="max-width: 750px;">
+            <thead>
+                <tr>
+                <th scope="col"></th>
+                <th scope="col">Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for incomplete_task in incomplete_tasks.items %}
+                <tr>
+                <th scope="row">
+                    <a href="{{url_for('tasks.complete', task_id=incomplete_task.id)}}" role="Button" aria-diabled="True" class="btn btn-primary btn-small" style="background-color: #66acff"> Complete</a>
+                </th>
+                <td>
+                    <a class="text-dark" href="{{url_for('tasks.your_task_content',task_id=incomplete_task.id)}}">{{ incomplete_task.item }} due on {{ incomplete_task.end_date}}</a> 
+                </td>
+                </tr>
+                {% endfor %}  
+            </tbody>
+        </table>           
     </div>
 {% endblock %}
+    {% block sidebarcontent %}
+    <dvi class="card mb-4">
+        <h5 class="card-header">My Achievements</h5>
+        <div class="card-body">
+            {% for completed_task in completed_tasks.items %}  
+                <p>
+                <a href="{{url_for('tasks.your_task_content', task_id=completed_task.id )}}" class="list-group-item  list-group-item-action list-group-item-light"> Awersome! I <span class="text-lowercase">
+                got {{ completed_task.item}}  done on {{ completed_task.actual_completion_date}} </span></a>
+                <p>
+            {% endfor %}   
+        </div>
+        {% endblock %}    
+    </dvi>
