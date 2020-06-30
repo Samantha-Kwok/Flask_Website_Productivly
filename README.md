@@ -27,8 +27,11 @@
 
 #### Personal Blog
 
-1. Create/Update/Delete A Post
-<img src="screenshoots/create_update_delete_a_post.gif">
+1. Create A Post
+<img src="screenshoots/create_a_post.gif">
+
+2. Update/Delete A Post
+<img src="screenshoots/update_delete_a_post.gif">
 
 
 ## Languages/libraries
@@ -37,7 +40,7 @@
 - CSS
 - bootstrap 
 - python3.8
-- bcrypt7                   
+- bcrypt                   
 - blinke
 - cffi
 - click
