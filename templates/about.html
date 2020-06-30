@@ -1,46 +1,34 @@
 {% extends "layout.html" %}
 {% block content %}
-   <div class=container>
       <div class="row">
-         <img class=col src="static\image_library\full-bg-image1.jpeg" alte="Planing">
+         <iframe width="700" height="480" src="https://www.youtube.com/embed/GsT2zi0VApM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <div class="row">
-         <h1 class=col-md-8>Productivly</h1>        
-      </div>
-      {% if current_user.is_authenticated%}
+      <br>
       <div class="row">
          <p class=col-md-12>"It always seems impossible until it is done." once said by Nelson Mandela. There is not a better statement than this to reflect the creation of this website-"Productivly". </p>
          <br>
-         <p class=col-md-12>Prodctivly, as the first website I built from scratch, enables myself and other users to build a To-Do-List digitally, as well as share our general thoughts on what being productive mean.
+         <p class=col-md-12>Prodctivly, as the first website I built from scratch, enables myself and other users to build a To-Do-List digitally, as well as share our general thoughts on personal development.
          <br>
          <p class=col-md-12> Why Productivly then? Programing and website development has been at the top of the list of "Things-To-Try" for about 7 years. 
-            However, I did not really feel ready or capable of doing it until now. In Decemeber 2019, I made a concious decision to take a career break.
-            Taking a break is not natural to me. I have thought I got to achieve or improve somthing everyday. 
-            Back then,I hardly asked myself questions like "Am I happy?" or "Am I stressed?". 
-            That is why I stepped out and took time to explore what makes me feel happy  and productive. 
-            Then I dived into the list of "Things-To-Try". After taking 2-month of online programing courses, I applied what I learnt into practices and built Productivly. it is a journey full of trials and errors
-            (it kept me motivated during the global pandemic.)
-         </p>
-         <br> 
-         <p class=col-md-12>In the near furture, I will continute to improve the functionalities and user experience of the website. Let's keep in touch! </p>      
-      </div>
-      {% else %}
-      <div class="row">
-         <p class=col-md-12>"It always seems impossible until it is done." once said by Nelson Mandela. There is not a better statement than this to reflect the creation of this website-"Productivly". </p>
          <br>
-         <p class=col-md-12>Prodctivly, as the first website I built from scratch, enables myself and other users <a href="{{url_for('users.register')}}">(feel free to register with us :) )</a> to build a To-Do-List digitally, as well as share our general thoughts on what being productive mean.
-         <br>
-         <p class=col-md-12> Why Productivly then? Programing and website development has been at the top of the list of "Things-To-Try" for about 7 years. 
-            However, I did not really feel ready or capable of doing it until now. In Decemeber 2019, I made a concious decision to take a career break.
-            Taking a break is not natural to me. I have thought I got to achieve or improve somthing everyday. 
-            Back then,I hardly asked myself questions like "Am I happy?" or "Am I stressed?". 
-            That is why I stepped out and took time to explore what makes me feel happy  and productive. 
-            Then I dived into the list of "Things-To-Try". After taking 2-month of online programing courses, I applied what I learnt into practices and built Productivly. it is a journey full of trials and errors
-            (it kept me motivated during the global pandemic.)
-         </p>
-         <br> 
-         <p class=col-md-12>In the near furture, I will continute to improve the functionalities and user experience of the website. Let's keep in touch! </p>      
+         <p class=col-md-12>
+               In Decemeber 2019, I made a concious decision to take a career break.
+               Taking a break is not natural to me. I have thought I got to achieve or improve somthing everyday. 
+               Back then,I hardly asked myself questions like "Am I happy?" or "Am I stressed?". 
+               That is why I stepped out and took time to explore what makes me feel happy  and productive. 
+               Then I dived into the list of "Things-To-Try". After taking 2-month of online programing courses, I applied what I learnt into practices and built Productivly. it is a journey full of trials and errors
+               (it kept me motivated during the global pandemic.)
+         </p>  
       </div>
-      {% endif %}
-   </div>
 {% endblock %}
+<br>
+{% block sidebarcontent %}
+  <dvi class="card mb-4">
+    <h5 class="card-header">Let's keep in touch</h5>
+    <div class="card-body">
+      <p>
+          I will continute to improve user experience of the website. if you have any feedbacks or questions, please feel free to contact me via <span class="font-weight-bold">productivlyuk@gmail.com</span>
+      </p>   
+   </div>  
+{% endblock %}
+</div>
