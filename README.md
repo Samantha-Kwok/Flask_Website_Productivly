@@ -15,7 +15,7 @@
 
 2. Update Account Details
 
-<img src="screenshoots/Account_Update.gif">
+<img src="screenshoots/account_update.gif">
 
 #### To-do-List 
 
