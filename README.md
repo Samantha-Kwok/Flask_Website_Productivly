@@ -35,7 +35,7 @@
 
 ## Key Features
 
-###### Account Management 
+#### Account Management 
 
 1. Register/Login
 
@@ -43,6 +43,8 @@
 
 2. Update Account Details
 
+
+<img src="screenshoots/Account_Update.gif">
 
 
 
