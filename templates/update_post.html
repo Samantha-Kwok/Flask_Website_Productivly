@@ -1,18 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ image_file }}">
-            <div  class="media-body">
-                <h2 class="account-heading">{{ current_user.username }}</h2>
-                <p class="text-secondary">{{ current_user.email }}</p>
-            </div>  
-        </div>
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data" >
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="borde-bottom mb-4">Update Post</legend>
-            </fieldset>
+            <div class= "form-group">
+                <img class="img-fluid" src="{{ post_image }}">
+            </div>  
             <div class="form-group">
                 {{form.title.label(class="form-control-label")}}
                 {% if form.title.errors %}
@@ -27,6 +21,19 @@
                 {% endif %}
             </div>
             <div class="form-group">
+                {{form.subtitle.label(class="form-control-label")}}
+                {% if form.subtitle.errors %}
+                    {{form.subtitle(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                    {% for error in form.subtitle.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.subtitle(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
                 {{form.content.label(class="form-control-label")}}
                 {% if form.content.errors %}
                     {{form.content(class="form-control form-control-lg is-invalid")}} 
@@ -37,6 +44,15 @@
                     </div>
                 {% else %}
                 {{form.content(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
                 {% endif %}
             </div>
             <fieldset>
