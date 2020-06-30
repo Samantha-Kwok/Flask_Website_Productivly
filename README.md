@@ -35,16 +35,28 @@
 
 ## Key Features
 
+
 #### Account Management 
 
-1. Register/Login
+1.Register/Login
 
 <img src="screenshoots/Register_Login.gif">
 
 2. Update Account Details
 
-
 <img src="screenshoots/Account_Update.gif">
 
+#### To-do-List 
+
+1. Create/Update/Delete A Task
+
+2. Complete A Task
+
+
+#### Personal Blog
+
+1. Create/Delete A Post
+
+2. Update A Post
 
 
