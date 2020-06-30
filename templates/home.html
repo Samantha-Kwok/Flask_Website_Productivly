@@ -1,46 +1,72 @@
 {% extends "layout.html" %}
+{% block homepagecontent %}
+  <div class="containter">
+      <div class="row align-items-center my-5">
+        <div class="col-md-5">
+            <img class="img-fluid rounded mb-4" src="static\image_library\full-bg-image1.jpeg", alt="make it happend"> 
+        </div>
+        <div class="col-md-7">
+            <h1 class="font-weight-bold"> Stay Productive  </h1>
+            <br>
+            <h3>Join us today to manage your to-do-lists digitally here as well as share your thoughts on personal development. </h3> 
+            <a class="btn btn-primary mb-4 btn-lg" style="background-color: #66acff" href="{{url_for('main.about')}}">Learn More</a>      
+        </div>
+{% endblock %}
+      <br>
 {% block content %}
-  <div>
+  <div class="card mb-4">
+    <h4 class="card-header font-weight-bold">Blog Feeds</h4>
     {% for post in posts.items %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
-      <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.author.username }}</a>
-            <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>  
+    <div class="card mb-4" style="max-width: 750px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{url_for('static',filename='post_pics/'+ post.post_image)}}" class="card-img" alt="post_image">
           </div>
-          <h2><a class="article-title" href="{{ url_for('posts.post_content', post_id=post.id) }}">{{ post.title }}</a></h2>
-          <p class="article-content">{{ post.content }}</p>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
-  <dvi>
-    {% for complete_task in complete_tasks.items %}
-    <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + complete_task.owner.image_file) }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="#">{{complete_task.owner.username}}</a>
-        <small class="text-muted">{{complete_task.date_created.strftime("%Y-%m-%d") }}</small>
-        <p>{{ complete_task.owner.username}} completed {{complete_task.item}} just now!</p>
-      </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="font-weight-bold">{{post.title}}</h5>
+              <p class="card-text">{{post.subtitle}}</p>
+              <a class="btn btn-primary btn-sm" style="background-color: #66acff"  href="{{ url_for('posts.post_content', post_id=post.id) }}">Read More</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on {{post.date_posted.strftime("%Y-%m-%d") }} by
+                  <a href="#">{{ post.author.username }}</a>
+            </div>
+          </div>
+        </div>
     </div>
-    </article>
-    {% endfor %} 
-  </dvi>
+    {% endfor %}
+  </div> 
+  <dvi>
   {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {%if page_num %}
       {%if posts.page== page_num %}
-        <a class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num)}}">{{page_num}}</a>
+        <a class="btn btn-primary mb-4" href="{{ url_for('main.home', page=page_num)}}">{{page_num}}</a>
       {% else %}
-        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num)}}">{{page_num}}</a>
+        <a class="btn btn-outline-primary mb-4" href="{{ url_for('main.home', page=page_num)}}">{{page_num}}</a>
       {% endif %}
     {% else %}
         . . .
     {% endif %}
   {% endfor %}
+  </dvi>
 {% endblock %}
-
-
-
+<br>
+{% block sidebarcontent %}
+  <dvi class="card mb-4">
+    <h4 class="card-header font-weight-bold">Community Notification</h4>
+    <div class="card-body">
+        {% for completed_task in completed_tasks %}
+        <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + completed_task.owner.image_file) }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <small class="text-muted">{{completed_task.actual_completion_date }}</small>
+            <p class="text-lowercase" >{{ completed_task.owner.username}} completed {{completed_task.item}} just now!</p> 
+            <!--- forced all in lower caase, usernmae in bold?-->
+          </div>
+        </div>
+        </article>
+        {% endfor %}   
+    </div> 
+{% endblock %}
