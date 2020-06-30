@@ -52,7 +52,7 @@
 <img src="screenshoots/create_update_delete_a_task.gif">
 
 2. Complete A Task
-
+<img src="screenshoots/complete_a_task.gif">
 
 #### Personal Blog
 
