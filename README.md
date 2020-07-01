@@ -1,6 +1,6 @@
 ## Productivly 
 
-#### [Productivly](https://productivly.co.uk) enables visitors to create an account to manage To-Do-Lists as well as write posts about personal development. The frontend uses HTML and CSS while the backend uses Python. An SQL database stores all the site's content. The cloud infrastructure used to deploy the web application is a Linode / Ubuntu private server.Please click [here](https://productivly.co.uk/about) to watch a video to walk through the website 
+#### [Productivly](https://productivly.co.uk) enables visitors to create an account to manage To-Do-Lists as well as write posts about personal development. The frontend uses HTML and CSS while the backend uses Python. An SQL database stores all the site's content. The cloud infrastructure used to deploy the web application is a Linode / Ubuntu private server. Please click [here](https://productivly.co.uk/about) to watch a video to walk through the website 
 
 
 ## Key Features 
